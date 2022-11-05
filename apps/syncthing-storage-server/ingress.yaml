@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: syncthing-ingress
+  namespace: default
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`www.syncthing.local.bruol.tech`)
+      kind: Rule
+      services:
+        - name: syncthing-service
+          port: 8384
+    - match: Host(`syncthing.local.bruol.tech`)
+      kind: Rule
+      services:
+        - name: syncthing-service
+          port: 8384
+  tls:
+    secretName: local-bruol-tech-tls

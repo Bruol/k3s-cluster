@@ -1,0 +1,1 @@
+in this directory there are files to use traefik as a reverse proxy for other services on my network
